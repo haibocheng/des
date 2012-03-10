@@ -4,7 +4,7 @@ import org.dovigo.log.Logging
 /**
  * DES - Dovigo Encoding Server
  * 
- * @author dev
+ * @author Hannes Moser
  * @version 0.1
  * @since 0.1
  */
