@@ -1,1 +1,4 @@
 h1. DES - Dovigo Encoding Server
+
+The DES server provides a media transcode service for different types of media
+files and formats(Audio, Video, Photo).
