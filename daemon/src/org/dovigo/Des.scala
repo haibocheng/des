@@ -4,7 +4,7 @@ package org.dovigo
  * DES - Dovigo Encoding Server
  * 
  * @author dev
- *
+ * @version 0.1
  */
 object Des {
 
