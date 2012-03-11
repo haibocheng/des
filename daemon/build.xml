@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create Runnable Jar for Project des-daemon with libraries in sub-folder">
+    <!--this file was created by Eclipse Runnable JAR Export Wizard-->
+    <!--ANT 1.7 is required                                        -->
+    <target name="create_run_jar">
+        <jar destfile="build/des.jar">
+            <manifest>
+                <attribute name="Main-Class" value="org.dovigo.DesRunner"/>
+                <attribute name="Class-Path" value=". lib/slf4j-api-1.6.4.jar lib/log4j-1.2.16.jar lib/slf4j-log4j12-1.6.4.jar lib/commons-cli-1.2.jar lib/scala-library.jar"/>
+            </manifest>
+            <fileset dir="bin"/>
+        </jar>
+        <delete dir="build/lib"/>
+        <mkdir dir="build/lib"/>
+        <copy file="lib/slf4j-1.6.4/slf4j-api-1.6.4.jar" todir="build/lib"/>
+        <copy file="lib/apache-log4j-1.2.16/log4j-1.2.16.jar" todir="build/lib"/>
+        <copy file="lib/slf4j-1.6.4/slf4j-log4j12-1.6.4.jar" todir="build/lib"/>
+        <copy file="lib/commons-cli-1.2/commons-cli-1.2.jar" todir="build/lib"/>
+        <copy file="lib/scala-2.9.1-1/lib/scala-library.jar" todir="build/lib"/>
+    </target>
+</project>
