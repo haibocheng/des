@@ -18,18 +18,16 @@ object Des extends AnyRef with Logging {
 
   def main(args: Array[String]): Unit = {
     
-    info("DES - Dovigo Encoding Server")
-    
     // Create CLI parser
     val parser = new PosixParser
     
     // Create options
     val options = new Options
     options.addOption("c", "config", true, "Use a different config then 'config/server-node.xml'")
-    options.addOption("h", "help", false, "Prints this help.")
+    options.addOption("h", "help", false, "Print this help")
    
     try {
-      // Parse the cli arguments
+      // Parse the CLI arguments
       val line = parser.parse(options, args);
       
       if(line.hasOption("h")) {
@@ -40,6 +38,9 @@ object Des extends AnyRef with Logging {
       case e : Exception =>
         error(e.getMessage())
     }
+    
+    // Info
+    info("DES - Dovigo Encoding Server")
     
     new Connection("tcp://localhost:61616", "des-msgs")
     

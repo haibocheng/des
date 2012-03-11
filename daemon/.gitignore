@@ -1,8 +1,9 @@
-/.cache
-/build
-/bin/*
-/logs/*
-/db/des.mwb.bak
-/lib/scala-2.9.1-1/
-/lib/apache-activemq-5.4.3
-/lib/mysql-connector-java-5.1.18
+.cache
+build
+bin/*
+logs/*
+db/des.mwb.bak
+lib/scala-2.9.1-1/
+lib/apache-activemq-5.4.3
+lib/mysql-connector-java-5.1.18
+jar-in-jar-loader.zip
