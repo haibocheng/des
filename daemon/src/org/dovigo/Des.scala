@@ -5,6 +5,7 @@ import org.apache.commons.cli.PosixParser
 import org.apache.commons.cli.Options
 import org.apache.commons.cli.CommandLine
 import org.apache.commons.cli.HelpFormatter
+import org.dovigo.des.queue.Connection
 
 /**
  * DES - Dovigo Encoding Server
@@ -23,8 +24,8 @@ object Des extends AnyRef with Logging {
     val parser = new PosixParser
     
     // Create options
-    val options = new Options()
-    options.addOption("c", "config", true, "Provide a config.xml file location, otherwise config/server-node.xml will be used.")
+    val options = new Options
+    options.addOption("c", "config", true, "Use a different config then 'config/server-node.xml'")
     options.addOption("h", "help", false, "Prints this help.")
    
     try {
@@ -39,6 +40,9 @@ object Des extends AnyRef with Logging {
       case e : Exception =>
         error(e.getMessage())
     }
+    
+    new Connection("tcp://localhost:61616", "des-msgs")
+    
   }
 
 }

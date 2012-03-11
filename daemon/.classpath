@@ -8,5 +8,8 @@
 	<classpathentry kind="lib" path="lib/apache-log4j-1.2.16/log4j-1.2.16.jar"/>
 	<classpathentry kind="lib" path="lib/slf4j-1.6.4/slf4j-log4j12-1.6.4.jar"/>
 	<classpathentry kind="lib" path="lib/commons-cli-1.2/commons-cli-1.2.jar" sourcepath="C:/Users/dev/.m2/repository/commons-cli/commons-cli/1.2/commons-cli-1.2-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dev/workspace/des/daemon/lib/scala-2.9.1-1/lib/scala-library.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dev/workspace/des/daemon/lib/mysql-connector-java-5.1.18/mysql-connector-java-5.1.18-bin.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dev/workspace/des/daemon/lib/apache-activemq-5.4.3/activemq-all-5.4.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

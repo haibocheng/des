@@ -1,13 +1,16 @@
 package org.dovigo;
 
-import java.util.ArrayList;
-import java.util.List;
-
+/**
+ * Des Runner
+ * 
+ * @author Hannes Moser
+ * @version 0.1
+ * @since 0.1
+ */
 public class DesRunner {
+	
 	public static void main(String[] args) {
-		List<String> argList = new ArrayList<String>();
-		argList.add("Des");
-		for(String s : args) argList.add(s);
-		Des.main(argList.toArray(new String[0]));
+		Des.main(args);
 	}
+	
 }

@@ -9,7 +9,7 @@
 	<queue>
 		<adapter>activemq</adapter>
 		<dsn>tcp://localhost:61616</dsn>
-		<queue>des-messages</queue>
+		<queue>des-msgs</queue>
 	</queue>
 	
 	<!-- Data -->
