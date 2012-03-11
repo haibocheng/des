@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dmes SYSTEM "profile.dtd">
+<dmes>
+	<properties>
+		<entry key="s">hd720</entry>
+		<entry key="b">2M</entry>
+		<entry key="bt">4M</entry>
+		<entry key="vcodec">libx264</entry>
+		<entry key="threads">4</entry>
+		<entry key="ar">48000</entry>
+		<entry key="ab">192k</entry>
+	</properties>
+	
+	<command>FFMpeg</command>
+	
+	<post-process>
+		<tool>MP4Box</tool>
+		<properties>
+			<entry key="hint"></entry>
+			<entry key="mpeg4"></entry>
+			<entry key="inter">500</entry>
+		</properties>
+	</post-process>
+</dmes>

@@ -1,0 +1,8 @@
+<!--The DES Message Format - Profile -->
+<!ELEMENT dmes (properties|command|post-process*)+>
+<!ELEMENT properties (entry*)?>
+<!ELEMENT entry	(#PCDATA)>
+<!ATTLIST entry
+	key		CDATA	#REQUIRED>
+<!ELEMENT post-process (tool|properties)+>
+<!ELEMENT command	(#PCDATA)>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dmes SYSTEM "profile.dtd">
+<dmes>
+	<properties>
+		<entry key="bitrate">2000</entry>
+		<entry key="progress"></entry>
+	</properties>
+	
+	<command>F4FPackager</command>
+</dmes>

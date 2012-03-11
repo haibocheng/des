@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dmes SYSTEM "profile.dtd">
+<dmes>
+	<properties>
+		<entry key="r">1</entry>
+		<entry key="ss">0</entry>
+		<entry key="vf">scale='240:-1'</entry>
+		<entry key="qscale">6</entry>
+	</properties>
+	
+	<command>FFMpeg</command>
+</dmes>
