@@ -6,6 +6,7 @@ import org.apache.commons.cli.Options
 import org.apache.commons.cli.CommandLine
 import org.apache.commons.cli.HelpFormatter
 import org.dovigo.des.queue.Connection
+import org.dovigo.cli.Command
 
 /**
  * DES - Dovigo Encoding Server
@@ -42,6 +43,20 @@ object Des extends AnyRef with Logging {
     // Info
     info("DES - Dovigo Encoding Server")
     
+    val option1 = new org.dovigo.cli.Option("option1", true, "val")
+    val option2 = new org.dovigo.cli.Option("option2", false)
+    val option3 = new org.dovigo.cli.Option("option3", true)
+    val option4 = new org.dovigo.cli.Option("option4", false, "val")
+    
+    val opts = new org.dovigo.cli.Options
+    opts.add(option1)
+    opts.add(option2)
+    opts.add(option3)
+    opts.add(option4)
+    
+    val cmd = new Command("/usr/bin/exec", opts)
+    
+    println(cmd.full)
   }
 
 }

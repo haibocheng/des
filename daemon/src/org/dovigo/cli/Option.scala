@@ -1,6 +1,6 @@
 package org.dovigo.cli
 
-class Option(var opt:String, var hasArg:Boolean, var value:String) {
+class Option(var opt:String, var hasArg:Boolean, var value:String = null) {
   
   /**
    * Create the option string. If option expects an argument, the value string
@@ -8,11 +8,8 @@ class Option(var opt:String, var hasArg:Boolean, var value:String) {
    * 
    * @return The option string
    */
-  def createOptionString:String = {
-    if(hasArg) {
-      return opt + " " + value
-    }
-    return opt
+  override def toString = {
+    "-" + opt + {if (hasArg && value != null) " " + value else ""}
   }
   
 }

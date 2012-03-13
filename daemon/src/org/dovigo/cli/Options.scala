@@ -14,8 +14,16 @@ class Options {
    * @param value The argument
    * @return The created option
    */
-  def addOption(opt:String, hasArg:Boolean, value:String):Option = {
-    options += new Option(opt, hasArg, value)
+  def add(opt:String, hasArg:Boolean, value:String = ""):Option = {
+    options += new Option(opt.trim, hasArg, value.trim)
+    options.last
+  }
+  
+  /**
+   * @see add
+   */
+  def add(opt:Option):Option = {
+    options += opt
     options.last
   }
   
@@ -25,10 +33,8 @@ class Options {
    * 
    * @return The created options string
    */
-  def createOptionsString:String = {
-    var s = ""
-    for(option <- options) s + " " + option.createOptionString
-    return s
+  override def toString = {
+    options.foldLeft("")((s,o) => s + " " + o)
   }
   
 }
