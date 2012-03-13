@@ -5,7 +5,7 @@
     <target name="create_run_jar">
         <jar destfile="build/des.jar">
             <manifest>
-                <attribute name="Main-Class" value="org.dovigo.DesRunner"/>
+                <attribute name="Main-Class" value="org.dovigo.Runner"/>
                 <attribute name="Class-Path" value=". lib/slf4j-api-1.6.4.jar lib/log4j-1.2.16.jar lib/slf4j-log4j12-1.6.4.jar lib/commons-cli-1.2.jar lib/scala-library.jar"/>
             </manifest>
             <fileset dir="bin"/>

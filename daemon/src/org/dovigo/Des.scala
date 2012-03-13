@@ -42,8 +42,6 @@ object Des extends AnyRef with Logging {
     // Info
     info("DES - Dovigo Encoding Server")
     
-    new Connection("tcp://localhost:61616", "des-msgs")
-    
   }
 
 }
