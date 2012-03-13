@@ -1,8 +1,48 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project default="create_run_jar" name="Create Runnable Jar for Project des-daemon with libraries in sub-folder">
-    <!--this file was created by Eclipse Runnable JAR Export Wizard-->
-    <!--ANT 1.7 is required                                        -->
-    <target name="create_run_jar">
+	
+	<property name="test-dir" location="tests" />
+	<property name="build-dir" location="build" />
+	
+	<path id="classpath.base">
+	</path>
+	<path id="classpath.tests">
+		<pathelement location="lib/scala-2.9.1-1/lib/scala-library.jar" />
+		<pathelement location="lib/scalatest-1.7.1/scalatest-.1.7.1.jar" />
+		<pathelement location="test/src" />
+		<path refid="classpath.base" />
+	</path>
+	
+	<target name="test">
+		<javac
+			srcdir="${test-dir}"
+			includeantruntime="true"
+			verbose="true">
+			<classpath refid="classpath.tests" />
+		</javac>
+	</target>
+	
+	<target name="junit" depends="test">
+		<junit printsummary="true">
+			<classpath refid="classpath.tests" />
+			
+			<formatter type="plain" />
+			
+			<test name="CLITestSuite" todir="docs/tests" />
+		</junit>
+	</target>
+	
+	<target name="clean">
+		<delete includeemptydirs="true" failonerror="false">
+			<fileset dir="${build-dir}" />
+		</delete>
+	</target>
+	
+	<target name="create" depends="clean">
+		<mkdir dir="${build-dir}" />
+	</target>
+	
+    <target name="create_run_jar" depends="create,junit">
         <jar destfile="build/des.jar">
             <manifest>
                 <attribute name="Main-Class" value="org.dovigo.Runner"/>
