@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="conf.xsd">
+	<!-- Threads -->
+	<threads>
+		<max-threads>8</max-threads>
+	</threads>
+	
+	<!-- Queue -->
+	<queue>
+		<adapter>activemq</adapter>
+		<dsn>tcp://localhost:61616</dsn>
+		<queue>des-msgs</queue>
+	</queue>
+	
+	<!-- Data -->
+	<data>
+		<driver>com.mysql.jdbc.Driver</driver>
+		<dsn>jdbc:mysql://des:des123@localhost:3306/des</dsn>
+	</data>
+	
+	<!-- Paths -->
+	<profiles>profiles</profiles>
+	
+	<!-- Commands -->
+	<commands>
+		<!-- FFmpeg -->
+		<command>
+			<name>FFMpeg</name>
+			<path>/usr/bin/ffmpeg</path>
+			<options-type>POSIX</options-type>
+			<template>%1$2s -i %2$2s%3$2s %4$2s</template>
+		</command>
+		
+		<!-- Image Magick -->
+		<command>
+			<name>IMagick</name>
+			<path>/usr/bin/convert</path>
+			<options-type>POSIX</options-type>
+			<template>%1$2s %2$2s%3$2s %4$2s</template>
+		</command>
+		
+		<!-- F4F Packager -->
+		<command>
+			<name>F4FPackager</name>
+			<path>/usr/bin/f4fpackager</path>
+			<options-type>GNU</options-type>
+			<template>%1$2s --input-file=%2$2s%3$2s --output-path=%4$2s</template>
+		</command>
+		
+		<!-- MP4 Box -->
+		<command>
+			<name>MP4Box</name>
+			<path>/usr/bin/MP4Box</path>
+			<options-type>POSIX</options-type>
+			<template>%1$2s %3$2s %2$2s</template>
+		</command>
+	</commands>
+	
+</config>

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<config>
+<config
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="conf.xsd">
 	<!-- Threads -->
 	<threads>
 		<max-threads>8</max-threads>
@@ -27,10 +29,7 @@
 		<command>
 			<name>FFMpeg</name>
 			<path>commands/ffmpeg-git-01a73d6-win64-shared/bin/ffmpeg.exe</path>
-			<params>
-				<prefix>-</prefix>
-				<separator></separator>
-			</params>
+			<options-type>POSIX</options-type>
 			<template>%1$2s -i %2$2s%3$2s %4$2s</template>
 		</command>
 		
@@ -38,10 +37,7 @@
 		<command>
 			<name>IMagick</name>
 			<path>commands/ImageMagick-6.7.0-Q16/convert.exe</path>
-			<params>
-				<prefix>-</prefix>
-				<separator></separator>
-			</params>
+			<options-type>POSIX</options-type>
 			<template>%1$2s %2$2s%3$2s %4$2s</template>
 		</command>
 		
@@ -49,10 +45,7 @@
 		<command>
 			<name>F4FPackager</name>
 			<path>commands/File_Packager_1.0_Windows_x64/adobe/f4fpackager/f4fpackager.exe</path>
-			<params>
-				<prefix>--</prefix>
-				<separator>=</separator>
-			</params>
+			<options-type>GNU</options-type>
 			<template>%1$2s --input-file=%2$2s%3$2s --output-path=%4$2s</template>
 		</command>
 		
@@ -60,10 +53,7 @@
 		<command>
 			<name>MP4Box</name>
 			<path>commands/mp4box-0.4.6-rev2735/MP4Box.exe</path>
-			<params>
-				<prefix>-</prefix>
-				<separator></separator>
-			</params>
+			<options-type>POSIX</options-type>
 			<template>%1$2s %3$2s %2$2s</template>
 		</command>
 	</commands>

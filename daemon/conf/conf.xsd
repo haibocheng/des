@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="config">
+    	<xs:complexType>
+    		<xs:sequence>
+    			<xs:element name="threads">
+    				<xs:complexType>
+    					<xs:sequence>
+    						<xs:element name="max-threads" type="xs:integer" />
+    					</xs:sequence>
+    				</xs:complexType>
+    			</xs:element>
+    			<xs:element name="queue">
+    				<xs:complexType>
+    					<xs:sequence>
+    						<xs:element name="adapter" type="xs:string" />
+    						<xs:element name="dsn" type="xs:anyURI" />
+    						<xs:element name="queue" type="xs:string" />
+    					</xs:sequence>
+    				</xs:complexType>
+    			</xs:element>
+    			<xs:element name="data">
+    				<xs:complexType>
+    					<xs:sequence>
+    						<xs:element name="driver" type="xs:string" />
+    						<xs:element name="dsn" type="xs:anyURI" />
+    					</xs:sequence>
+    				</xs:complexType>
+    			</xs:element>
+    			<xs:element name="profiles" type="xs:anyURI" />
+    			<xs:element name="commands">
+    				<xs:complexType>
+    					<xs:sequence>
+    						<xs:element minOccurs="1" maxOccurs="unbounded" ref="command" />
+    					</xs:sequence>
+    				</xs:complexType>
+    			</xs:element>
+    		</xs:sequence>
+    	</xs:complexType>
+    </xs:element>
+	<xs:element name="command">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="name" type="xs:string" />
+				<xs:element name="path" type="xs:anyURI" />
+				<xs:element name="options-type" type="xs:string" />
+				<xs:element name="template" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
