@@ -1,48 +1,74 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project default="create_run_jar" name="Create Runnable Jar for Project des-daemon with libraries in sub-folder">
+<project default="create_runnable" name="Create Runnable Jar for Project des-daemon with libraries in sub-folder">
 	
-	<property name="test-dir" location="tests" />
-	<property name="build-dir" location="build" />
+	<property name="test.dir" value="test/src" />
+	<property name="test.build.dir" value="bin" />
+	<property name="src.dir" value="src" />
+	<property name="src.build.dir" value="bin" />
+	<property name="build.dir" value="build" />
+	<property name="lib.dir" value="lib" />
+	<property name="scala.lib.dir" value="lib/scala-2.9.1-1/lib" />
 	
 	<path id="classpath.base">
+		<pathelement location="${scala.lib.dir}/scala-library.jar" />
+		<pathelement location="${lib.dir}/apache-activemq-5.4.3/activemq-all-5.4.3.jar" />
+		<pathelement location="${lib.dir}/slf4j-1.6.4/slf4j-api-1.6.4.jar" />
+		<pathelement location="${lib.dir}/apache-log4j-1.2.16/log4j-1.2.16.jar" />
+		<pathelement location="${lib.dir}/slf4j-1.6.4/slf4j-log4j12-1.6.4.jar" />
+		<pathelement location="${lib.dir}/commons-cli-1.2/commons-cli-1.2.jar" />
 	</path>
-	<path id="classpath.tests">
-		<pathelement location="lib/scala-2.9.1-1/lib/scala-library.jar" />
-		<pathelement location="lib/scalatest-1.7.1/scalatest-.1.7.1.jar" />
-		<pathelement location="test/src" />
+	<path id="classpath.test">
 		<path refid="classpath.base" />
+		<pathelement location="lib/scalatest-1.7.1/scalatest-1.7.1.jar" />
+		<pathelement location="lib/junit-4.10.jar" />
+		<pathelement location="${src.build.dir}" />
+		<pathelement location="${test.build.dir}" />
 	</path>
 	
-	<target name="test">
-		<javac
-			srcdir="${test-dir}"
-			includeantruntime="true"
-			verbose="true">
-			<classpath refid="classpath.tests" />
-		</javac>
+	<taskdef resource="scala/tools/ant/antlib.xml">
+	    <classpath>
+	        <pathelement location="${scala.lib.dir}/scala-compiler.jar" />
+	        <pathelement location="${scala.lib.dir}/scala-library.jar" />
+	    </classpath>
+	</taskdef>
+	
+	<target name="prepare">
+		<delete includeemptydirs="true" failonerror="false">
+			<fileset dir="${src.build.dir}" />
+			<fileset dir="${test.build.dir}" />
+			<fileset dir="${build.dir}" />
+		</delete>
+		<mkdir dir="${src.build.dir}" />
+		<mkdir dir="${test.build.dir}" />
+		<mkdir dir="${build.dir}" />
 	</target>
 	
-	<target name="junit" depends="test">
-		<junit printsummary="true">
-			<classpath refid="classpath.tests" />
+	<target name="build" depends="prepare">
+		<scalac srcdir="${src.dir}" destdir="${src.build.dir}" classpathref="classpath.base" force="yes" failonerror="true">
+			<include name="**/*.scala" />
+		</scalac>
+	</target>
+	
+	<target name="test">
+		<scalac srcdir="${test.dir}" destdir="${test.build.dir}" classpathref="classpath.test" force="yes" failonerror="true">
+			<include name="**/*.scala" />
+		</scalac>
+	</target>
+	
+	<target name="junit" depends="build,test">
+		<junit printsummary="true" haltonerror="true">
+			<classpath refid="classpath.test" />
 			
 			<formatter type="plain" />
 			
-			<test name="CLITestSuite" todir="docs/tests" />
+			<test name="CLITestSuite" todir="docs/test" />
 		</junit>
 	</target>
 	
-	<target name="clean">
-		<delete includeemptydirs="true" failonerror="false">
-			<fileset dir="${build-dir}" />
-		</delete>
-	</target>
-	
-	<target name="create" depends="clean">
-		<mkdir dir="${build-dir}" />
-	</target>
-	
-    <target name="create_run_jar" depends="create,junit">
+    <target name="create_runnable" depends="prepare,junit">
+    	<delete dir="${basedir}" failonerror="false">
+    		<filename name="build/des.jar" />
+    	</delete>
         <jar destfile="build/des.jar">
             <manifest>
                 <attribute name="Main-Class" value="org.dovigo.Runner"/>

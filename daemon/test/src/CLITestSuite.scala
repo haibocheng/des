@@ -6,7 +6,7 @@ import org.scalatest.junit.JUnitRunner
 import org.dovigo.cli.Command
 
 @RunWith(classOf[JUnitRunner])
-class CLISuite extends FunSuite {
+class CLITestSuite extends FunSuite {
 
   test("Create option object with argument") {
     val option = new Option("name", true, "val")
@@ -74,7 +74,7 @@ class CLISuite extends FunSuite {
     
     val cmd = new Command("/usr/bin/exec", options, List("argument1", "argument2"))
     
-    assert(cmd.full.equals("/usr/bin/exec -option1 val -option2 -option3 -option4 ddargument1 argument2"))    
+    assert(cmd.full.equals("/usr/bin/exec -option1 val -option2 -option3 -option4 argument1 argument2"))    
   }
   
 }
