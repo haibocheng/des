@@ -1,0 +1,11 @@
+h1. DES - WebApp
+
+The WebApp can be used to control and monitor DES nodes.
+You also have the possibility to generate reports.
+
+h2. What is it?
+
+This application is written in Scala/Play Framework.
+It is perfectly doing the job and it is also possible
+to run it as a standalone app without any dependencies to
+a Jetty or JBoss container.
