@@ -1,0 +1,4 @@
+h1. DES - Root
+
+DES stands for Dovigo Encoding Server and consists of two separate projects.
+The daemon(node) and the webapp.
