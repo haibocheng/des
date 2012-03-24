@@ -5,3 +5,4 @@ logs/*
 .project
 .classpath
 .settings
+.cache
