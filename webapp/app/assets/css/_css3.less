@@ -1,0 +1,123 @@
+/**
+ * CSS3 Border-Radius
+ *
+ * @param @topLeft Either the top left radius, if no other param provided,
+ * this value is applied for all params
+ * @param @topRight [optional]
+ * @param @bottomRight [optional]
+ * @param @bottomLeft [optional]
+ */
+.border-radius(@topLeft, @topRight: 0, @bottomRight: 0, @bottomLeft: 0) {
+	-moz-border-radius-topleft: @topLeft;
+	-moz-border-radius-topright: @topRight;
+	-moz-border-radius-bottomright: @bottomRight;
+	-moz-border-radius-bottomleft: @bottomLeft;
+	-webkit-border-radius: @topLeft @topRight @bottomRight @bottomLeft;
+	border-radius: @topLeft @topRight @bottomRight @bottomLeft;
+}
+
+/**
+ * CSS3 Box-Shadow
+ *
+ * @param @x
+ * @param @y
+ * @param @blur
+ * @param @spread
+ * @param @color
+ */
+.box-shadow(@x, @y, @blur, @spread, @color) {
+	-webkit-box-shadow: @x @y @blur @spread @color;
+	-moz-box-shadow: @x @y @blur @spread @color;
+	box-shadow: @x @y @blur @spread @color;
+}
+
+/**
+ * CSS3 Text-Shadow
+ * @param @x
+ * @param @y
+ * @param @blur
+ * @param @color
+ */
+.text-shadow(@x, @y, @blur, @color) {
+	text-shadow: @x @y @blur @color;
+	filter: dropshadow(color=@color, offx=@x, offy=@y);
+}
+
+/**
+ * CSS3 Multi-Column Layout
+ * @param @columns
+ * @param @gap
+ */
+.columns(@columns, @gap) {
+	-moz-column-count: @columns;
+	-moz-column-gap: @gap;
+	-webkit-column-count: @columns;
+	-webkit-column-gap: @gap;
+	column-count: @columns;
+	column-gap: @gap;	
+}
+
+/**
+ * CSS3 Outline
+ * @param @thickness
+ * @param @style
+ * @param @color
+ * @param @offset [optional]
+ */
+.outline(@thickness, @style, @color, @offset : 0) {
+	outline: @thickness @style @color;
+	outline-offset: @offset;
+}
+
+/**
+ * CSS3 Transition
+ * @param @property
+ * @param @duration
+ * @param @function [optional]
+ */
+.transition(@property, @duration, @function : ease) {
+	-webkit-transition: @property @duration @function;
+	-moz-transition: @property @duration @function;
+	-o-transition: @property @duration @function;
+	transition: @property @duration @function;
+}
+
+/**
+ * CSS3 Transformation
+ * @param @scale
+ * @param @rotate
+ * @param @translate
+ * @param @skew
+ */
+.transform(@scale, @rotate, @translateX, @translateY, @skewX, @skewY) {
+	-moz-transform: scale(@scale) rotate(@rotate) translate(@translateX, @translateY) skew(@skewX, @skewY);
+	-webkit-transform: scale(@scale) rotate(@rotate) translate(@translateX, @translateY) skew(@skewX, @skewY);
+	-o-transform: scale(@scale) rotate(@rotate) translate(@translateX, @translateY) skew(@skewX, @skewY);
+	-ms-transform: scale(@scale) rotate(@rotate) translate(@translateX, @translateY) skew(@skewX, @skewY);
+	transform: scale(@scale) rotate(@rotate) translate(@translateX, @translateY) skew(@skewX, @skewY);
+}
+
+/**
+ * CSS3 Background Gradient
+ * @param @color1
+ * @param @color2
+ */
+.gradient(@color1, @color2) {
+	background: -moz-linear-gradient(top, @color1 0%, @color2 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,@color1), color-stop(100%,@color2)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, @color1 0%,@color2 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, @color1 0%,@color2 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, @color1 0%,@color2 100%); /* IE10+ */
+	background: linear-gradient(top, @color1 0%,@color2 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{@color1}', endColorstr='#{@color2}',GradientType=0 ); /* IE6-9 */
+}
+
+/**
+ * CSS3 Opacity
+ * @param @opacity 
+ */
+.opacity(@opacity) {
+	-moz-opacity: @opacity;
+	opacity: @opacity;
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=@opacity * 100)";
+}

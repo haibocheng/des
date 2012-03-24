@@ -1,7 +1,257 @@
-@(message: String)
+@()
 
-@main("Welcome to Play 2.0") {
-    
-    @play20.welcome(message)
-    
+@main("Welcome to DES") {
+   	<div class="jumbotron subhead">
+   		<h1>DES says Howdie!</h1>
+   		<p class="lead">You are currently running <a href="#">2 projects</a> with <a href="#">16 presets</a>.</p>
+   	</div>
+   	<section>
+	   	<div class="page-header">
+	   		<h1>
+	   			Processing Stats
+	   			<small>Check load values.</small>
+	   		</h1>
+	   	</div>
+		<div class="progress progress-info progress-striped active">
+			<div class="info">40%<small>4 Processors</small></div>
+			<div class="bar" style="width: 40%;"></div>
+		</div>
+		<div class="row">
+			<div class="span6">
+				<h3>Files</h3>
+				<p>
+					Currently <strong>20 jobs</strong> are in queue and the
+					average process time is <strong>2min 15secs</strong> which
+					leads to an average load value of <strong>0.58</strong> for
+					the last 5mins.
+				</p>
+				<p>
+					Until this value is not dramatically <strong>&gt; 1</strong>,
+					you are safe.
+				</p>
+			</div>
+			<div class="span6">
+				<h3>Table Of Loads</h3>
+				<table class="table table-striped table-bordered">
+					<thead>
+						<tr>
+							<th>&nbsp;</th>
+							<th>15 mins</th>
+							<th>10 mins</th>
+							<th>5 mins</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Balance</td>
+							<td>0.4</td>
+							<td>0.45</td>
+							<td>0.58</td>
+						</tr>
+						<tr>
+							<td>Files</td>
+							<td>30</td>
+							<td>22</td>
+							<td>8</td>
+						</tr>
+					</tbody>
+				</table>				
+			</div>
+		</div>
+	   	<div class="page-header">
+	   		<h1>
+	   			Processing Queue
+	   			<small>Currently running jobs.</small>
+	   		</h1>
+	   	</div>
+	   	<ul class="thumbnails">
+			<li class="span-3">
+	   			<div class="thumbnail job job-success">
+	   				<img src="@routes.Assets.at("img/samples/thumbnail-210x145.jpg")" width="210" height="145" />
+	   				<div class="caption">
+	   					<h5>filename.jpg</h5>
+		    			<h6>for <a href="#">dovigo</a></h6>
+		    			<table class="table table-condensed">
+		    				<thead>
+		    					<tr>
+		    						<th>Input</th>
+		    						<th>Output</th>
+		    					</tr>
+		    				</thead>
+		    				<tbody>
+		    					<tr>
+		    						<td>VC-1 20 MBit/s</td>
+		    						<td>MP4 1MBit/s</td>
+		    					</tr>
+		    					<tr>
+		    						<td>AAC 192kb</td>
+		    						<td>AAC 32kb</td>
+		    					</tr>
+		    				</tbody>
+		    			</table>
+		    			<hr />
+		    			<div class="progress progress-success">
+							<div class="bar" style="width: 60%;"></div>
+						</div>
+						<table class="table table-condensed">
+							<tr>
+								<td><h4>58%</h4></td>
+								<td><h4>2min 16secs</h4></td>
+							</tr>
+							<tr>
+								<td><h6>PROCESSED</h6></td>
+								<td><h6>ETA</h6></td>
+							</tr>
+						</table>
+		    		</div>
+		    	</div>
+	   		</li>
+			<li class="span-3">
+	   			<div class="thumbnail job">
+	   				<img src="@routes.Assets.at("img/samples/thumbnail-210x145.jpg")" width="210" height="145" />
+	   				<div class="caption">
+	   					<h5>filename.jpg</h5>
+		    			<h6>for <a href="#">dovigo</a></h6>
+		    			<table class="table table-condensed">
+		    				<thead>
+		    					<tr>
+		    						<th>Input</th>
+		    						<th>Output</th>
+		    					</tr>
+		    				</thead>
+		    				<tbody>
+		    					<tr>
+		    						<td>VC-1 20 MBit/s</td>
+		    						<td>MP4 1MBit/s</td>
+		    					</tr>
+		    					<tr>
+		    						<td>AAC 192kb</td>
+		    						<td>AAC 32kb</td>
+		    					</tr>
+		    				</tbody>
+		    			</table>
+		    			<hr />
+		    			<div class="progress">
+							<div class="bar" style="width: 60%;"></div>
+						</div>
+						<table class="table table-condensed">
+							<tr>
+								<td><h4>58%</h4></td>
+								<td><h4>2min 16secs</h4></td>
+							</tr>
+							<tr>
+								<td><h6>PROCESSED</h6></td>
+								<td><h6>ETA</h6></td>
+							</tr>
+						</table>
+		    		</div>
+		    	</div>
+	   		</li>
+			<li class="span-3">
+	   			<div class="thumbnail job job-warning">
+	   				<img src="@routes.Assets.at("img/samples/thumbnail-210x145.jpg")" width="210" height="145" />
+	   				<div class="caption">
+	   					<h5>filename.jpg</h5>
+		    			<h6>for <a href="#">dovigo</a></h6>
+		    			<table class="table table-condensed">
+		    				<thead>
+		    					<tr>
+		    						<th>Input</th>
+		    						<th>Output</th>
+		    					</tr>
+		    				</thead>
+		    				<tbody>
+		    					<tr>
+		    						<td>VC-1 20 MBit/s</td>
+		    						<td>MP4 1MBit/s</td>
+		    					</tr>
+		    					<tr>
+		    						<td>AAC 192kb</td>
+		    						<td>AAC 32kb</td>
+		    					</tr>
+		    				</tbody>
+		    			</table>
+		    			<hr />
+		    			<div class="progress progress-warning">
+							<div class="bar" style="width: 60%;"></div>
+						</div>
+						<table class="table table-condensed">
+							<tr>
+								<td><h4>58%</h4></td>
+								<td><h4>2min 16secs</h4></td>
+							</tr>
+							<tr>
+								<td><h6>PROCESSED</h6></td>
+								<td><h6>ETA</h6></td>
+							</tr>
+						</table>
+		    		</div>
+		    	</div>
+	   		</li>
+			<li class="span-3">
+	   			<div class="thumbnail job job-danger">
+	   				<img src="@routes.Assets.at("img/samples/thumbnail-210x145.jpg")" width="210" height="145" />
+	   				<div class="caption">
+	   					<h5>filename.jpg</h5>
+		    			<h6>for <a href="#">dovigo</a></h6>
+		    			<table class="table table-condensed">
+		    				<thead>
+		    					<tr>
+		    						<th>Input</th>
+		    						<th>Output</th>
+		    					</tr>
+		    				</thead>
+		    				<tbody>
+		    					<tr>
+		    						<td>VC-1 20 MBit/s</td>
+		    						<td>MP4 1MBit/s</td>
+		    					</tr>
+		    					<tr>
+		    						<td>AAC 192kb</td>
+		    						<td>AAC 32kb</td>
+		    					</tr>
+		    				</tbody>
+		    			</table>
+		    			<hr />
+		    			<div class="progress progress-danger">
+							<div class="bar" style="width: 60%;"></div>
+						</div>
+						<table class="table table-condensed">
+							<tr>
+								<td><h4>58%</h4></td>
+								<td><h4>2min 16secs</h4></td>
+							</tr>
+							<tr>
+								<td><h6>PROCESSED</h6></td>
+								<td><h6>ETA</h6></td>
+							</tr>
+						</table>
+		    		</div>
+		    	</div>
+	   		</li>
+	   	</ul>
+   	</section>
+    <section>
+    	<hr />
+    	<div class="row">
+    		<div class="span3">
+    			<h3>Documentation</h3>
+    			<ul>
+    				<li><a href="#">How To</a></li>
+    				<li><a href="#">API Reference</a></li>
+    				<li><a href="#">Users Guide</a></li>
+    				<li><a href="#">Setup Your Installation</a></li>
+    			</ul>
+    		</div>
+    		<div class="span3">
+    			<h3>About</h3>
+    			<ul>
+    				<li><a href="#">Contact</a></li>
+    				<li><a href="#">Fork &amp; Contribute</a></li>
+    				<li><a href="#">Core Team</a></li>
+    				<li><a href="#">License &amp; GPL</a></li>
+    			</ul>
+    		</div>
+    	</div>
+    </section>
 }
