@@ -1,4 +1,7 @@
-@(title: String)(content: Html)
+@(title: String)(content: Html)(implicit request: RequestHeader)
+
+@import play.api.Logger
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -22,12 +25,12 @@
 					<a class="brand" href="/">DES</a>
 	    			<div class="nav-collapse">
 		    			<ul class="nav">
-		    				<li><a href="/">Home</a></li>
-		    				<li><a href="/projects">Projects</a></li>
-		    				<li><a href="/presets">Presets</a></li>
-		    				<li><a href="/applications">Applications</a></li>
-		    				<li><a href="/docs">Docs</a></li>
-		    				<li><a href="/help">Help</a></li>
+		    				<li class="@("active".when(routes.Application.index.toString() == request.path).toString())"><a href="@routes.Application.index()">Home</a></li>
+		    				<li class="@("active".when(routes.Application.projects.toString() == request.path).toString())"><a href="@routes.Application.projects()">Projects</a></li>
+		    				<li class="@("active".when(routes.Application.presets.toString() == request.path).toString())"><a href="@routes.Application.presets()">Presets</a></li>
+		    				<li class="@("active".when(routes.Application.applications.toString() == request.path).toString())"><a href="@routes.Application.applications()">Applications</a></li>
+		    				<li class="@("active".when(routes.Application.docs.toString() == request.path).toString())"><a href="@routes.Application.docs()">Docs</a></li>
+		    				<li class="@("active".when(routes.Application.help.toString() == request.path).toString())"><a href="@routes.Application.help()">Help</a></li>
 		    			</ul>
 		    			<ul class="nav pull-right">
 		    				<li class="divider-vertical"></li>
@@ -52,6 +55,7 @@
 	    	@content
 	    </div>
     </body>
-    <script src="@routes.Assets.at("js/jquery-1.7.1.min.js")" type="text/javascript"></script>
-    <script type="text/javascript" src="@routes.Assets.at("lib/bootstrap/js/bootstrap.js")" ></script>
+    <script type="text/javascript" src="@routes.Assets.at("js/jquery-1.7.1.min.js")" ></script>
+    <script type="text/javascript" src="@routes.Assets.at("lib/bootstrap/js/bootstrap.min.js")" ></script>
+    <script type="text/javascript" src="@routes.Assets.at("coffee/main.min.js")" ></script>
 </html>
