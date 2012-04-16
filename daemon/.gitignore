@@ -11,3 +11,4 @@ lib/apache-activemq-5.4.3
 lib/mysql-connector-java-5.1.18
 lib/scalatest-1.7.1
 lib/junit*
+tools

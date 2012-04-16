@@ -1,2 +1,3 @@
 # Ignore everything inside this directory but keep the directory in the repo
 !.gitignore
+/TEST-CLITestSuite.txt
