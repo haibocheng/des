@@ -23,6 +23,9 @@ package org.dovigo
 
 import org.apache.commons.configuration.Configuration
 import org.dovigo.process.Scheduler
+import scala.actors.threadpool.BlockingQueue
+import java.util.concurrent.ArrayBlockingQueue
+import org.dovigo.cli.Command
 
 /**
  * Bootstrapping
@@ -39,7 +42,9 @@ object Bootstrap {
   def init(conf:Configuration) = {
     // Process Scheduler
     val scheduler = new Scheduler(conf.getInt("scheduler.max-workers"))
-    scheduler.run
+    scheduler.start
+    
+    scheduler ! new Command("/usr/bin/ffmpeg -h")
   }
   
 }

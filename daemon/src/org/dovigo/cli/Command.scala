@@ -24,7 +24,14 @@ package org.dovigo.cli
 import scala.sys.process.Process
 import scala.sys.process.ProcessLogger
 
-class Command(path:String, options:Options, arguments:List[String] = List[String]()) {
+/**
+ * Command
+ * 
+ * @author Hannes Moser
+ * @version 0.1
+ * @since 0.1
+ */
+class Command(path:String, options:Options = new Options, arguments:List[String] = List[String]()) {
   
   /**
    * Run a process and blocks until it is finished. After the process is finish

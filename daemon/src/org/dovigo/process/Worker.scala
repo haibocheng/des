@@ -23,6 +23,7 @@ package org.dovigo.process
 
 import scala.actors.Actor
 import org.dovigo.log.Logging
+import org.dovigo.cli.Command
 
 /**
  * Worker
@@ -31,10 +32,14 @@ import org.dovigo.log.Logging
  * @version 0.1
  * @since 0.1
  */
-class Worker extends Actor with Logging {
-
+class Worker(var command:Command) extends Actor with Logging { 
+  
+  def setCommand(cmd:Command) {
+    command = cmd
+  }
+  
   def act() {
-    info("Act: Worker run")
+    command.run
   }
   
 }
