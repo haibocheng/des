@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project default="create_runnable" name="Create Runnable Jar for Project des-daemon with libraries in sub-folder">
+<project default="create_runnable" name="Create Runnable Jar for Project des-daemon with libraries in sub-folder" basedir=".">
 	
 	<property name="test.dir" value="test/src" />
 	<property name="test.build.dir" value="bin" />
 	<property name="src.dir" value="src" />
 	<property name="src.build.dir" value="bin" />
 	<property name="build.dir" value="build" />
+	<property name="src.doc.dir" value="docs/api" />
 	<property name="lib.dir" value="lib" />
 	<property name="scala.lib.dir" value="lib/scala-2.9.1-1/lib" />
 	
@@ -16,6 +17,8 @@
 		<pathelement location="${lib.dir}/apache-log4j-1.2.16/log4j-1.2.16.jar" />
 		<pathelement location="${lib.dir}/slf4j-1.6.4/slf4j-log4j12-1.6.4.jar" />
 		<pathelement location="${lib.dir}/commons-cli-1.2/commons-cli-1.2.jar" />
+		<pathelement location="${lib.dir}/commons-configuration-1.8/commons-configuration-1.8.jar" />
+		<pathelement location="${lib.dir}/commons-lang-2.6/commons-lang-2.6.jar" />
 	</path>
 	<path id="classpath.test">
 		<path refid="classpath.base" />
@@ -27,25 +30,44 @@
 	
 	<taskdef resource="scala/tools/ant/antlib.xml">
 	    <classpath>
-	        <pathelement location="${scala.lib.dir}/scala-compiler.jar" />
 	        <pathelement location="${scala.lib.dir}/scala-library.jar" />
+	    	<pathelement location="${scala.lib.dir}/scala-compiler.jar" />
 	    </classpath>
 	</taskdef>
 	
+	<!-- Prepare directories for build -->
 	<target name="prepare">
 		<delete includeemptydirs="true" failonerror="false">
 			<fileset dir="${src.build.dir}" />
+			<fileset dir="${src.doc.dir}" />
 			<fileset dir="${test.build.dir}" />
 			<fileset dir="${build.dir}" />
 		</delete>
 		<mkdir dir="${src.build.dir}" />
+		<mkdir dir="${src.doc.dir}" />
 		<mkdir dir="${test.build.dir}" />
 		<mkdir dir="${build.dir}" />
 	</target>
 	
+	<!-- Create Scaladoc -->
+	<target name="api" depends="prepare" >
+		<scaladoc
+			srcdir="${src.dir}"
+			destdir="${src.doc.dir}"
+			classpathref="classpath.base"
+			doctitle="DES - API Specification" >
+				<include name="**/*.scala" />
+		</scaladoc>
+	</target>
+	
+	<!-- Build -->
 	<target name="build" depends="prepare">
-		<scalac srcdir="${src.dir}" destdir="${src.build.dir}" classpathref="classpath.base" force="yes" failonerror="true">
-			<include name="**/*.scala" />
+		<scalac	srcdir="${src.dir}"
+				destdir="${src.build.dir}"
+				classpathref="classpath.test"
+				force="yes"
+				failonerror="true">
+					<include name="**/*.scala" />
 		</scalac>
 	</target>
 	

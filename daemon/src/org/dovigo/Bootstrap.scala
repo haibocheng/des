@@ -19,24 +19,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package org.dovigo.log
+package org.dovigo
 
-import org.slf4j.LoggerFactory
+import org.apache.commons.configuration.Configuration
+import org.dovigo.process.Scheduler
 
 /**
- * Logging trait, wraps slf4j
- *
+ * Bootstrapping
+ * 
  * @author Hannes Moser
  * @version 0.1
  * @since 0.1
  */
-trait Logging {
+object Bootstrap {
 
-  var log = LoggerFactory.getLogger(getClass)
-
-  def debug(msg: => String) = if (log.isDebugEnabled) log.debug(msg)
-  def info(msg: => String) = if (log.isDebugEnabled) log.info(msg)
-  def warn(msg: => String) = if (log.isDebugEnabled) log.warn(msg)
-  def error(msg: => String) = if (log.isDebugEnabled) log.error(msg)
-
+  /**
+   * Initialize the application
+   */
+  def init(conf:Configuration) = {
+    // Process Scheduler
+    val scheduler = new Scheduler(conf.getInt("scheduler.max-workers"))
+    scheduler.run
+  }
+  
 }

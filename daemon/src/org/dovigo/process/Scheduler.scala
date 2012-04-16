@@ -19,24 +19,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package org.dovigo.log
+package org.dovigo.process
 
-import org.slf4j.LoggerFactory
+import org.dovigo.log.Logging
 
 /**
- * Logging trait, wraps slf4j
- *
+ * Scheduler for worker objects
+ * 
  * @author Hannes Moser
  * @version 0.1
  * @since 0.1
  */
-trait Logging {
+class Scheduler(maxWorkers:Integer = 2) extends Logging {
 
-  var log = LoggerFactory.getLogger(getClass)
-
-  def debug(msg: => String) = if (log.isDebugEnabled) log.debug(msg)
-  def info(msg: => String) = if (log.isDebugEnabled) log.info(msg)
-  def warn(msg: => String) = if (log.isDebugEnabled) log.warn(msg)
-  def error(msg: => String) = if (log.isDebugEnabled) log.error(msg)
-
+  val numWorkers:Integer = maxWorkers
+ 
+  def run = {
+    info("Run scheduler with " + numWorkers + " workers")
+  }
+  
 }

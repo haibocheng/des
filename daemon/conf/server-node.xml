@@ -2,10 +2,11 @@
 <config
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:noNamespaceSchemaLocation="conf.xsd">
+	
 	<!-- Threads -->
-	<threads>
-		<max-threads>8</max-threads>
-	</threads>
+	<scheduler>
+		<max-workers>8</max-workers>
+	</scheduler>
 	
 	<!-- Queue -->
 	<queue>
