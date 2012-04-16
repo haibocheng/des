@@ -35,7 +35,7 @@ import org.dovigo.log.Logging
  * @version 0.1
  * @since 0.1
  */
-object Des extends AnyRef with Logging {
+object Des extends Logging {
 
   /**
    * Main

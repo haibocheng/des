@@ -39,7 +39,7 @@ class Worker(var command:Command) extends Actor with Logging {
   }
   
   def act() {
-    command.run
+    val result:(List[String], List[String], Int) = command.run
   }
   
 }

@@ -23,6 +23,7 @@ package org.dovigo.cli
 
 import scala.sys.process.Process
 import scala.sys.process.ProcessLogger
+import org.dovigo.log.Logging
 
 /**
  * Command
@@ -31,7 +32,11 @@ import scala.sys.process.ProcessLogger
  * @version 0.1
  * @since 0.1
  */
-class Command(path:String, options:Options = new Options, arguments:List[String] = List[String]()) {
+class Command(
+    path:String,
+    options:Options = new Options,
+    arguments:List[String] = List[String]())
+    	extends Logging {
   
   /**
    * Run a process and blocks until it is finished. After the process is finish
@@ -40,6 +45,8 @@ class Command(path:String, options:Options = new Options, arguments:List[String]
    * @return stdout, error, exit values
    */
   def run = {
+    println("Run: " + full)
+    
     val processBuilder = Process(full)
     var out = List[String]()
     var err = List[String]()

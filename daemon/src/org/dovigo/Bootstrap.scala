@@ -26,6 +26,7 @@ import org.dovigo.process.Scheduler
 import scala.actors.threadpool.BlockingQueue
 import java.util.concurrent.ArrayBlockingQueue
 import org.dovigo.cli.Command
+import org.dovigo.log.Logging
 
 /**
  * Bootstrapping
@@ -34,7 +35,7 @@ import org.dovigo.cli.Command
  * @version 0.1
  * @since 0.1
  */
-object Bootstrap {
+object Bootstrap extends Logging {
 
   /**
    * Initialize the application
@@ -44,7 +45,8 @@ object Bootstrap {
     val scheduler = new Scheduler(conf.getInt("scheduler.max-workers"))
     scheduler.start
     
-    scheduler ! new Command("/usr/bin/ffmpeg -h")
+    scheduler ! new Command(
+        conf.getString("commands.command(0).path"))
   }
   
 }

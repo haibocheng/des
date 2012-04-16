@@ -29,7 +29,7 @@
 		<!-- FFmpeg -->
 		<command>
 			<name>FFMpeg</name>
-			<path>/tools/ffmpeg-20120416-git-4fa706a-win64-static/bin/ffmpeg.exe</path>
+			<path>tools/ffmpeg-20120416-git-4fa706a-win64-static/bin/ffmpeg.exe</path>
 			<options-type>POSIX</options-type>
 			<template>%1$2s -i %2$2s%3$2s %4$2s</template>
 		</command>
@@ -37,7 +37,7 @@
 		<!-- Image Magick -->
 		<command>
 			<name>IMagick</name>
-			<path>/tools/ImageMagick-6.7.6-Q16/convert.exe</path>
+			<path>tools/ImageMagick-6.7.6-Q16/convert.exe</path>
 			<options-type>POSIX</options-type>
 			<template>%1$2s %2$2s%3$2s %4$2s</template>
 		</command>
@@ -45,7 +45,7 @@
 		<!-- F4F Packager -->
 		<command>
 			<name>F4FPackager</name>
-			<path>/tools/adobe_f4fpackager_4_5_1_windows_x64/f4fpackager.exe</path>
+			<path>tools/adobe_f4fpackager_4_5_1_windows_x64/f4fpackager.exe</path>
 			<options-type>GNU</options-type>
 			<template>%1$2s --input-file=%2$2s%3$2s --output-path=%4$2s</template>
 		</command>
@@ -53,7 +53,7 @@
 		<!-- MP4 Box -->
 		<command>
 			<name>MP4Box</name>
-			<path>/tools/MP4Box-0.4.6-rev2735/MP4Box.exe</path>
+			<path>tools/MP4Box-0.4.6-rev2735/MP4Box.exe</path>
 			<options-type>POSIX</options-type>
 			<template>%1$2s %3$2s %2$2s</template>
 		</command>

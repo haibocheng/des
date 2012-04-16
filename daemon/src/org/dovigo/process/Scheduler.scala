@@ -42,7 +42,7 @@ class Scheduler(val maxWorkers: Integer) extends Actor with Logging {
     loop {
       receive {
         case c: Command => consume(c)
-        case _ => info("What the hell i just got?")
+        case _ => info("What the hell i just got here?")
       }
     }
   }
