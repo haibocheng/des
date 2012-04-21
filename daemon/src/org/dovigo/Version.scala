@@ -19,41 +19,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package org.dovigo.process
-
-import org.dovigo.log.Logging
-import org.dovigo.cli.Command
-import scala.actors.Actor
-import org.dovigo.cli.Command
+package org.dovigo
 
 /**
- * Scheduler for worker objects
+ * Version
  *
  * @author Hannes Moser
  * @version 0.1
  * @since 0.1
  */
-class Scheduler(val maxWorkers: Int) extends Actor with Logging {
+object Version {
+
+	val major = 0
+	val minor = 1
+	val patch = 0
+	val build = 0
 
 	/**
-	 * Run scheduler and check for new jobs within the blocking queue
+	 * @return Current project version as string
 	 */
-	def act = {
-		loop {
-			receive {
-				case c: Command => consume(c)
-				case _ => info("What the hell i just got here?")
-			}
-		}
-	}
-
-	/**
-	 * Consume a job and run it
-	 * @param command The command you just consumed to execute immediately
-	 */
-	protected def consume(command: Command) = {
-		val worker = new Worker(command)
-		worker.start
+	override def toString = {
+		major + "." + minor + "." + patch + "." + build
 	}
 
 }

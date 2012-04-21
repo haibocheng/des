@@ -7,10 +7,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -37,48 +37,48 @@ import org.dovigo.log.Logging
  */
 object Des extends Logging {
 
-  /**
-   * Main
-   */
-  def main(args: Array[String]): Unit = {
+	/**
+	 * Main
+	 */
+	def main(args: Array[String]): Unit = {
 
-    // Create CLI parser
-    val parser = new PosixParser
-    
-    val conf = new XMLConfiguration
-    conf.setValidating(false)
-    conf.setFileName("conf/server-node.xml")
+		// Create CLI parser
+		val parser = new PosixParser
 
-    // Create options
-    val options = new Options
-    options.addOption("c", "config", true, "Use a different config then 'config/server-node.xml'")
-    options.addOption("h", "help", false, "Print this help")
+		val conf = new XMLConfiguration
+		conf.setValidating(false)
+		conf.setFileName("conf/server-node.xml")
 
-    try {
-      // Parse the CLI arguments
-      val line = parser.parse(options, args);
+		// Create options
+		val options = new Options
+		options.addOption("c", "config", true, "Use a different config then 'config/server-node.xml'")
+		options.addOption("h", "help", false, "Print this help")
 
-      if (line.hasOption("h")) {
-        val formatter = new HelpFormatter
-        return formatter.printHelp("des", options)
-      }
+		try {
+			// Parse the CLI arguments
+			val line = parser.parse(options, args);
 
-      if (line.hasOption("c")) {
-        conf.setFileName(line.getOptionValue("c"))
-      }
-    } catch {
-      case e: Exception =>
-        error(e.getMessage())
-    }
-    
-    // Info
-    info("DES - Dovigo Encoding Server")
+			if (line.hasOption("h")) {
+				val formatter = new HelpFormatter
+				return formatter.printHelp("des", options)
+			}
 
-    // Load config
-    conf.load()
+			if (line.hasOption("c")) {
+				conf.setFileName(line.getOptionValue("c"))
+			}
+		} catch {
+			case e: Exception =>
+				error(e.getMessage())
+		}
 
-    // Bootstrap
-    Bootstrap.init(conf)
-  }
+		// Info
+		info("DES - Dovigo Encoding Server")
+
+		// Load config
+		conf.load()
+
+		// Bootstrap
+		Bootstrap.init(conf)
+	}
 
 }

@@ -12,7 +12,7 @@
 	<classpathentry kind="lib" path="lib/commons-cli-1.2/commons-cli-1.2.jar" sourcepath="C:/Users/dev/.m2/repository/commons-cli/commons-cli/1.2/commons-cli-1.2-sources.jar"/>
 	<classpathentry kind="lib" path="C:/Users/dev/workspace/des/daemon/lib/scala-2.9.1-1/lib/scala-library.jar"/>
 	<classpathentry kind="lib" path="C:/Users/dev/workspace/des/daemon/lib/mysql-connector-java-5.1.18/mysql-connector-java-5.1.18-bin.jar"/>
-	<classpathentry kind="lib" path="C:/Users/dev/workspace/des/daemon/lib/apache-activemq-5.4.3/activemq-all-5.4.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dev/workspace/des/daemon/lib/apache-activemq-5.4.3/activemq-all-5.4.3.jar" sourcepath="C:/Users/dev/.m2/repository/org/apache/activemq/activemq-all/5.4.3/activemq-all-5.4.3-sources.jar"/>
 	<classpathentry kind="lib" path="C:/Users/dev/workspace/des/daemon/lib/scalatest-1.7.1/scalatest-1.7.1.jar"/>
 	<classpathentry kind="lib" path="lib/commons-configuration-1.8/commons-configuration-1.8.jar" sourcepath="C:/Users/dev/.m2/repository/commons-configuration/commons-configuration/1.8/commons-configuration-1.8-sources.jar"/>
 	<classpathentry kind="lib" path="lib/commons-logging-1.1.1/commons-logging-1.1.1.jar"/>

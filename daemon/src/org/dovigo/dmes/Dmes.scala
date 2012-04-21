@@ -2,7 +2,7 @@
  * Copyright (c) 2012 Hannes Moser
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
- * ofthis software and associated documentation files (the "Software"), to deal
+ * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
@@ -19,15 +19,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package org.dovigo.des.queue.activemq
+package org.dovigo.dmes
+
+import scala.collection.mutable.Queue
 
 /**
- * ActiveMQ Queue service
+ * Dmes
  * 
  * @author Hannes Moser
  * @version 0.1
  * @since 0.1
  */
-class ActivemqQueueService {
-  
+class Dmes(val messages:Queue[Message]) {
+
+	/**
+	 * Textual representation of this dmes object
+	 * @return The dmes object as String
+	 */
+	override def toString = {
+		"Messages: " + messages
+	}
+	
 }

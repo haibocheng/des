@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project default="create_runnable" name="Create Runnable Jar for Project des-daemon with libraries in sub-folder" basedir=".">
+<project default="create_runnable" name="Build des-daemon" basedir=".">
 	
 	<property name="test.dir" value="test/src" />
 	<property name="test.build.dir" value="bin" />

@@ -7,10 +7,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,21 +25,21 @@ import org.dovigo.cli.OptionsType._
 
 /**
  * An option is as the name says an option for commandline executables.
- * 
+ *
  * @author Hannes Moser
  * @version 0.1
  * @since 0.1
  */
-class Option(val opt:String, val hasArg:Boolean, val value:String = null, val optionsType:OptionsType = OptionsType.POSIX ) {
-  
-  /**
-   * Create the option string. If option expects an argument, the value string
-   * is attached with an empty char prefix to the option
-   * 
-   * @return The option string
-   */
-  override def toString = {
-    optionsType + opt + {if (hasArg && value != null) " " + value else ""}
-  }
-  
+class Option(val opt: String, val hasArg: Boolean, val value: String = null, val optionsType: OptionsType = OptionsType.POSIX) {
+
+	/**
+	 * Create the option string. If option expects an argument, the value string
+	 * is attached with an empty char prefix to the option
+	 *
+	 * @return The option string
+	 */
+	override def toString = {
+		optionsType + opt + { if (hasArg && value != null) " " + value else "" }
+	}
+
 }

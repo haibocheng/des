@@ -2,7 +2,7 @@
  * Copyright (c) 2012 Hannes Moser
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
+ * ofthis software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
@@ -19,41 +19,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package org.dovigo.process
-
-import org.dovigo.log.Logging
-import org.dovigo.cli.Command
-import scala.actors.Actor
-import org.dovigo.cli.Command
+package org.dovigo.queue.activemq
 
 /**
- * Scheduler for worker objects
+ * ActiveMQ Queue service
  *
  * @author Hannes Moser
  * @version 0.1
  * @since 0.1
  */
-class Scheduler(val maxWorkers: Int) extends Actor with Logging {
-
-	/**
-	 * Run scheduler and check for new jobs within the blocking queue
-	 */
-	def act = {
-		loop {
-			receive {
-				case c: Command => consume(c)
-				case _ => info("What the hell i just got here?")
-			}
-		}
-	}
-
-	/**
-	 * Consume a job and run it
-	 * @param command The command you just consumed to execute immediately
-	 */
-	protected def consume(command: Command) = {
-		val worker = new Worker(command)
-		worker.start
-	}
+class ActivemqQueueService {
 
 }

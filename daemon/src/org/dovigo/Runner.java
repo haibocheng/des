@@ -21,6 +21,8 @@
  */
 package org.dovigo;
 
+import org.dovigo.Des;
+
 /**
  * Des Runner
  * 
@@ -29,9 +31,9 @@ package org.dovigo;
  * @since 0.1
  */
 public class Runner {
-	
+
 	public static void main(String[] args) {
 		Des.main(args);
 	}
-	
+
 }
