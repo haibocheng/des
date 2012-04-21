@@ -21,14 +21,16 @@
  */
 package org.dovigo.dmes.parser
 
-import org.dovigo.cli.Command
-import org.dovigo.dmes.Message
+import scala.collection.mutable.HashMap
 import scala.xml.Elem
 import scala.xml.Node
+import org.dovigo.cli.Command
+import org.dovigo.cli.Options
 import org.dovigo.dmes.Dmes
-import org.dovigo.dmes.Dmes
-import scala.collection.mutable.ArraySeq
-import scala.collection.mutable.Queue
+import org.dovigo.dmes.Message
+import org.dovigo.cli.Option
+import scala.xml.XML
+import java.io.File
 
 /**
  * Xml Parser provides methods and constants to load, process XML data to
@@ -39,6 +41,7 @@ import scala.collection.mutable.Queue
  * @since 0.1
  */
 object XmlParser {
+	// Constants
 	val N_DMES = "dmes"
 
 	val N_MESSAGE = "message"
@@ -57,7 +60,20 @@ object XmlParser {
 	val A_INPUT = "@input"
 	val A_OUTPUT = "@output"
 	val A_NAME = "@name"
+		
+	var profilesPath = "profiles"
+		
+	val profiles = new HashMap[String, Message]
 
+	/**
+	 * Set profiles path
+	 * 
+	 * @param path
+	 */
+	def setProfilesPath(path:String) = {
+		profilesPath = path
+	}
+	
 	/**
 	 * Find necessary nodes with path information, options and option values
 	 * and create a valid executable command object
@@ -67,26 +83,57 @@ object XmlParser {
 	def create(data: Elem): Dmes = {
 		val root = data \\ N_DMES
 		val path = "test"
-			
-		val messages = new Queue[Message]
+
+		val messages = new HashMap[String, Message]
 		for (message <- (root \\ N_MESSAGE)) {
-			messages += parseMessage(message)
+			val m = parseMessage(message, messages)
+
+			messages += (m.id -> m)
 		}
 
-		val c = new Command(path)
-		
 		new Dmes(messages)
 	}
 
 	/**
 	 * Parse a single message element and return created message object
-	 * 
+	 *
 	 * @return The created message object
 	 */
-	protected def parseMessage(message: Node): Message = {
+	protected def parseMessage(message: Node, messages: HashMap[String, Message]): Message = {
+		// Message options
+		val opts = new Options
+		
+		val options = message \\ N_OPTIONS
+		for(option <- (options \\ N_OPTION)) {
+			val optionName = option \ A_NAME
+			val optionValue = option.text
+			val hasOption = !optionValue.isEmpty
+			opts.add(new Option(optionName.toString, hasOption, optionValue))
+		}
+		
+		// Is this message extending another one
+		val extend = (message \ A_EXTENDS).toString
+		
+		// Create the message object
 		new Message(
 			(message \ A_ID).toString,
-			(message \ A_PID).toString)
+			(message \ A_PID).toString,
+			opts,
+			getProfile(extend),
+			messages)
+	}
+	
+	/**
+	 * Get a profile by name
+	 * 
+	 * @return The profile as Message object
+	 */
+	protected def getProfile(name:String):Message = {
+		if(name.isEmpty)
+			return new Message(name)
+		
+		val profileData = XML.load(profilesPath + File.separator + name + ".xml")
+		parseMessage(profileData, profiles)
 	}
 
 }

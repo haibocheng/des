@@ -7,10 +7,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -21,23 +21,23 @@
  */
 package org.dovigo.dmes
 
-import scala.collection.mutable.Queue
+import scala.collection.mutable.HashMap
 
 /**
  * Dmes
- * 
+ *
  * @author Hannes Moser
  * @version 0.1
  * @since 0.1
  */
-class Dmes(val messages:Queue[Message]) {
+class Dmes(val messages: HashMap[String, Message]) {
 
 	/**
 	 * Textual representation of this dmes object
 	 * @return The dmes object as String
 	 */
 	override def toString = {
-		"Messages: " + messages
+		"Messages: \n" + messages.foldLeft("")((s, m) => s + " " + m + "\n")
 	}
-	
+
 }

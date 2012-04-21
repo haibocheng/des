@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE dmes SYSTEM "profile.dtd">
+<!DOCTYPE dmes SYSTEM "../schemes/dmes.dtd">
 <dmes>
 	<command>IMagick</command>
 </dmes>

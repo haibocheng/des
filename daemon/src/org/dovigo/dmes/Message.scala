@@ -22,6 +22,7 @@
 package org.dovigo.dmes
 
 import org.dovigo.cli.Options
+import scala.collection.mutable.HashMap
 
 /**
  * Message
@@ -30,15 +31,20 @@ import org.dovigo.cli.Options
  * @version 0.1
  * @since 0.1
  */
-class Message(val id: String, val pid: String = null, val options: Options = new Options) {
-	
+class Message(
+		val id: String,
+		val pid: String = null,
+		val options: Options = new Options,
+		val extend: Message = null,
+		val registry: HashMap[String, Message] = new HashMap) {
+
 	/**
 	 * Textual representation of this message
-	 * 
+	 *
 	 * @return Comma concated message properties
 	 */
 	override def toString = {
-		"id: " + id + ", " + "pid: " + pid + ", options: " + options
+		"id: " + id + ", " + "pid: " + pid + ", options: " + options + ", extends:" + extend
 	}
-	
+
 }

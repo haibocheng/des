@@ -1,0 +1,32 @@
+<!--The DES Message Format-->
+<!ELEMENT dmes (message+|report?)+>
+<!ATTLIST dmes
+	id		ID		#REQUIRED>
+<!ELEMENT message (file?|options*|command?|post-process*)*>
+<!ATTLIST message
+	id		ID		#IMPLIED
+	pid		IDREFS	#IMPLIED
+	extends CDATA	#IMPLIED>
+<!ELEMENT file	EMPTY>
+<!ATTLIST file
+	input	CDATA	#IMPLIED
+	output	CDATA	#IMPLIED>
+<!ELEMENT options (option*)?>
+<!ELEMENT option	(#PCDATA)>
+<!ATTLIST option
+	name	CDATA	#REQUIRED>
+<!ELEMENT command	(#PCDATA)>
+<!ELEMENT post-process (options*|command?)*>
+
+<!ELEMENT report (writer+|report-messages)+>
+<!ELEMENT writer (mapping)>
+<!ATTLIST writer
+	type	(sql|hashtable|text) #REQUIRED>
+<!ELEMENT mapping (field)+>
+<!ELEMENT field (#PCDATA)>
+<!ATTLIST field
+	key		(id|state|messages) #REQUIRED>
+<!ELEMENT report-messages (report-message+)>
+<!ELEMENT report-message (#PCDATA)>
+<!ATTLIST report-message
+	key		(CORRUPT_FILE|GENERAL_ERROR)	#REQUIRED>

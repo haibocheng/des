@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE dmes SYSTEM "profile.dtd">
+<!DOCTYPE dmes SYSTEM "../schemes/dmes.dtd">
 <dmes>
-	<properties>
-		<entry key="r">1</entry>
-		<entry key="vframes">1</entry>
-		<entry key="vf">scale='640:-1'</entry>
-		<entry key="qscale">1</entry>
-	</properties>
+	<options>
+		<option name="r">1</option>
+		<option name="vframes">1</option>
+		<option name="vf">scale='640:-1'</option>
+		<option name="qscale">1</option>
+	</options>
 	
 	<command>FFMpeg</command>
 </dmes>
