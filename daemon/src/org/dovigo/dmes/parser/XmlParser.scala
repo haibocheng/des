@@ -31,6 +31,10 @@ import org.dovigo.dmes.Message
 import org.dovigo.cli.Option
 import scala.xml.XML
 import java.io.File
+import org.dovigo.dmes.NullMessage
+import org.dovigo.cli.Command
+import org.dovigo.cli.CommandRegistry
+import scala.xml.NodeSeq
 
 /**
  * Xml Parser provides methods and constants to load, process XML data to
@@ -61,9 +65,25 @@ object XmlParser {
 	val A_OUTPUT = "@output"
 	val A_NAME = "@name"
 		
+	/**
+	 * Commands
+	 */
+	val commands = new HashMap[String, Command]
+		
+	/**
+	 * Profiles path
+	 */
 	var profilesPath = "profiles"
 		
+	/**
+	 * List of profiles
+	 */
 	val profiles = new HashMap[String, Message]
+	
+	/*
+	 * Null Message is used for empty messages
+	 */
+	val NULL_MESSAGE = new NullMessage
 
 	/**
 	 * Set profiles path
@@ -108,19 +128,41 @@ object XmlParser {
 			val optionName = option \ A_NAME
 			val optionValue = option.text
 			val hasOption = !optionValue.isEmpty
+			
 			opts.add(new Option(optionName.toString, hasOption, optionValue))
 		}
 		
-		// Is this message extending another one
-		val extend = (message \ A_EXTENDS).toString
+		// Is this message extending a profile
+		val profile = getProfile( (message \ A_EXTENDS).toString )
+		
+		// Command
+		val command = getCommand( (message \\ N_CMD) )
 		
 		// Create the message object
 		new Message(
 			(message \ A_ID).toString,
 			(message \ A_PID).toString,
 			opts,
-			getProfile(extend),
+			command.getOrElse(null),
+			profile.getOrElse(NULL_MESSAGE),
 			messages)
+	}
+	
+	/**
+	 * Get command out of given node
+	 * 
+	 * @return The command
+	 */
+	protected def getCommand(node:NodeSeq):scala.Option[Command] = {
+		val commandName = node.text
+		
+		if(commandName.isEmpty)
+			return None
+		
+		if(CommandRegistry.isset(commandName))
+			return new Some(CommandRegistry.get(commandName))
+		else
+			return None
 	}
 	
 	/**
@@ -128,12 +170,18 @@ object XmlParser {
 	 * 
 	 * @return The profile as Message object
 	 */
-	protected def getProfile(name:String):Message = {
+	protected def getProfile(name:String):scala.Option[Message] = {
 		if(name.isEmpty)
-			return new Message(name)
+			return None
+			
+		if(profiles.contains(name))
+			return profiles.get(name)
 		
 		val profileData = XML.load(profilesPath + File.separator + name + ".xml")
-		parseMessage(profileData, profiles)
+		val p = new Some(parseMessage(profileData, profiles))
+		
+		profiles += (name -> p.get)
+		return p
 	}
 
 }

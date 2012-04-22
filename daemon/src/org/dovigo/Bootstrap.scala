@@ -21,14 +21,13 @@
  */
 package org.dovigo
 
-import org.apache.commons.configuration.Configuration
-import org.dovigo.process.Scheduler
-import scala.actors.threadpool.BlockingQueue
-import java.util.concurrent.ArrayBlockingQueue
-import org.dovigo.cli.Command
-import org.dovigo.log.Logging
-import org.dovigo.dmes.parser.XmlParser
 import scala.xml.XML
+import org.apache.commons.configuration.Configuration
+import org.dovigo.dmes.parser.XmlParser
+import org.dovigo.log.Logging
+import java.util.Collection
+import org.dovigo.cli.CommandRegistry
+import org.dovigo.cli.Command
 
 /**
  * Bootstrapping
@@ -43,6 +42,24 @@ object Bootstrap extends Logging {
 	 * Initialize the application
 	 */
 	def init(conf: Configuration) = {
+		// Register commands
+		val commands = conf.getProperty("commands.command.name")
+		val size = commands match {
+			case c:java.util.Collection[Object] => c.asInstanceOf[java.util.Collection[Object]].size
+			case _ => 0
+		}
+		
+		for(i <- 0 to size) {
+			val name = conf.getString("commands.command(" + i + ").name");
+			val path = conf.getString("commands.command(" + i + ").path");
+			val optionsType = conf.getString("commands.command(" + i + ").options-type");
+			val template = conf.getString("commands.command(" + i + ").template");
+			
+			CommandRegistry.add(
+				new Command(name, path))
+		}
+
+		// Parse a test message
 		val xml = XML.load("demos/messages/full.xml")
 		val dmes = XmlParser.create(xml)
 		println(dmes)
@@ -52,9 +69,9 @@ object Bootstrap extends Logging {
 		//scheduler.start
 
 		/*
-    scheduler ! new Command(
+    	scheduler ! new Command(
         conf.getString("commands.command(0).path"))
-	*/
+		 */
 	}
 
 }

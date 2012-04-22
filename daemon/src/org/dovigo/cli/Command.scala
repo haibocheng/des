@@ -33,9 +33,10 @@ import org.dovigo.log.Logging
  * @since 0.1
  */
 class Command(
-	path: String,
-	options: Options = new Options,
-	arguments: List[String] = List[String]())
+	val name: String,
+	val path: String,
+	var options: Options = new Options,
+	val arguments: List[String] = List[String]())
 		extends Logging {
 
 	/**
@@ -55,6 +56,13 @@ class Command(
 
 		(out.reverse, err.reverse, exit)
 	}
+	
+	/**
+	 * Set options
+	 */
+	def setOptions(opts:Options) = {
+		options = opts
+	}
 
 	/**
 	 * Create and return the full command string including the path to the
@@ -63,7 +71,14 @@ class Command(
 	 * @return The full execution string
 	 */
 	def full = {
-		path.trim + options + (if (arguments.length > 0) " " + arguments.mkString(" ") else "")
+		name + path.trim + options + (if (arguments.length > 0) " " + arguments.mkString(" ") else "")
+	}
+	
+	/**
+	 * String representation of this command
+	 */
+	override def toString = {
+		full
 	}
 
 }

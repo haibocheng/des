@@ -19,57 +19,52 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package org.dovigo.dmes
+package org.dovigo.cli
 
-import org.dovigo.cli.Options
 import scala.collection.mutable.HashMap
-import org.dovigo.cli.Command
 
 /**
- * Message
+ * Command Registry
  *
  * @author Hannes Moser
  * @version 0.1
  * @since 0.1
  */
-class Message(
-		var id: String = null,
-		var pid: String = null,
-		var options: Options = new Options,
-		var command: Command = null,
-		var extend: Message = null,
-		val registry: HashMap[String, Message] = new HashMap) {
+object CommandRegistry {
 
-	// Extend message
-	extending
-	
+	val commands = new HashMap[String, Command]
+
 	/**
-	 * Initialize message options
+	 * Add command to registry
 	 */
-	protected def extending:Unit = {
-		// Exit immediately if extend message is null
-		if(extend == null)
-			return
-		
-		if(id == null)
-			id = extend.id
-			
-		if(pid == null)
-			pid = extend.pid
-			
-		if(command == null)
-			command = extend.command
-			
-		options.add(extend.options)
+	def add(command: Command) = {
+		commands += (command.name -> command)
 	}
 	
 	/**
-	 * Textual representation of this message
-	 *
-	 * @return Comma concatenated message properties
+	 * Remove command from registry
 	 */
-	override def toString = {
-		"id: " + id + "\n " + "pid: " + pid + "\n" + command + "\n options: " + options + "\n extends: " + extend.toString
+	def remove(command: Command) = {
+		commands -= (command.name)
+	}
+	
+	/**
+	 * Get command from registry
+	 */
+	def get(name:String) = {
+		commands.get(name).get
+	}
+	
+	/**
+	 * Whether a command is registered or not
+	 * 
+	 * @return True if command is registered otherwise false
+	 */
+	def isset(name:String):Boolean = {
+		if(commands.contains(name))
+			return true
+		else
+			return false
 	}
 
 }

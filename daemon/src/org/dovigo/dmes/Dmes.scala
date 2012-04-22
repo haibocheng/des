@@ -37,7 +37,7 @@ class Dmes(val messages: HashMap[String, Message]) {
 	 * @return The dmes object as String
 	 */
 	override def toString = {
-		"Messages: \n" + messages.foldLeft("")((s, m) => s + " " + m + "\n")
+		"Messages: \n" + messages.foldLeft("")((s, m) => s + " " + m + "\n\n")
 	}
 
 }

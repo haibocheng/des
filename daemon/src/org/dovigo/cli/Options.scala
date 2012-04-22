@@ -21,7 +21,7 @@
  */
 package org.dovigo.cli
 
-import scala.collection.mutable.ListBuffer
+import scala.collection.mutable.HashMap
 
 /**
  * Options can contain several option objects. The options class is able to
@@ -33,7 +33,7 @@ import scala.collection.mutable.ListBuffer
  */
 class Options {
 
-	val options = ListBuffer[Option]()
+	val options = HashMap[String, Option]()
 
 	/**
 	 * Creates and add a single option to this options object. After adding to this
@@ -44,17 +44,42 @@ class Options {
 	 * @param value The argument
 	 * @return The created option
 	 */
-	def add(opt: String, hasArg: Boolean, value: String = ""): Option = {
-		options += new Option(opt.trim, hasArg, value.trim)
-		options.last
+	def add(opt: String, hasArg: Boolean, value: String = ""): String = {
+		options += (opt -> new Option(opt.trim, hasArg, value.trim))
+		options.last._1
 	}
 
 	/**
 	 * @see add
 	 */
-	def add(opt: Option): Option = {
-		options += opt
-		options.last
+	def add(opt: Option): String = {
+		options += (opt.opt -> opt)
+		options.last._1
+	}
+	
+	/**
+	 * Add options of another options group to this options
+	 */
+	def add(opts: Options) = {
+		options ++= opts.get
+	}
+	
+	/**
+	 * Get all options as hashmap
+	 * 
+	 * @return All options as HashMap
+	 */
+	def get:HashMap[String, Option] = {
+		return options
+	}
+	
+	/**
+	 * Get the size of this options list
+	 * 
+	 * @return The size of the options list
+	 */
+	def size = {
+		options.size
 	}
 
 	/**

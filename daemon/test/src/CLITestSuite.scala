@@ -87,7 +87,7 @@ class CLITestSuite extends FunSuite {
     options.add(option3)
     options.add(option4)
     
-    val cmd = new Command("/usr/bin/exec", options)
+    val cmd = new Command("test", "/usr/bin/exec", options)
     
     assert(cmd.full.equals("/usr/bin/exec -option1 val -option2 -option3 -option4"))    
   }
@@ -104,7 +104,7 @@ class CLITestSuite extends FunSuite {
     options.add(option3)
     options.add(option4)
     
-    val cmd = new Command("/usr/bin/exec", options, List("argument1", "argument2"))
+    val cmd = new Command("test", "/usr/bin/exec", options, List("argument1", "argument2"))
     
     assert(cmd.full.equals("/usr/bin/exec -option1 val -option2 -option3 -option4 argument1 argument2"))    
   }
