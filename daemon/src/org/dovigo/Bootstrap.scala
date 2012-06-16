@@ -45,7 +45,7 @@ object Bootstrap extends Logging {
 		// Register commands
 		val commands = conf.getProperty("commands.command.name")
 		val size = commands match {
-			case c:java.util.Collection[Object] => c.asInstanceOf[java.util.Collection[Object]].size
+			case c:java.util.Collection[Object] => c.size
 			case _ => 0
 		}
 		
