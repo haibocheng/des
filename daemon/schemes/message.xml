@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<des:dmes
+	id="MSGID-1"
+	xmlns:des="http://des.dovigo.org/dmes"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://des.dovigo.org/dmes dmes.xsd ">
+	
+	<process id="FFMPEG">
+		<path>/usr/bin/ffmpeg</path>
+		<options>
+			<option name="i" value="%1" />
+			<option value="%2" />
+		</options>
+	</process>
+	
+	<fileSet id="GRP-1">
+		<input>
+			<file uri="file://localhost/test.mov">
+				<process pid="FFMPEG">
+					<options>
+						<option name="preset" value="faster" />
+					</options>
+				</process>
+			</file>
+		</input>
+	</fileSet>
+	
+</des:dmes>

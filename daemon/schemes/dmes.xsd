@@ -1,0 +1,70 @@
+<?xml version="1.0" ?>
+<schema targetNamespace="http://des.dovigo.org/dmes" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:des="http://des.dovigo.org/dmes">
+
+	<complexType name="File">
+		<sequence>
+			<element name="process" type="des:Process" />
+		</sequence>
+		<attribute name="uri" type="anyURI" />
+	</complexType>
+	
+	<complexType name="Source">
+		<sequence>
+			<element name="file" type="des:File" maxOccurs="unbounded" minOccurs="1" maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+	
+	<simpleType name="OptionType">
+		<restriction base="string">
+			<enumeration value="POSIX" />
+			<enumeration value="GNU" />
+			<enumeration value="Java Properties" />
+			<enumeration value="Short Options" />
+			<enumeration value="Long Options" />
+		</restriction>
+	</simpleType>
+	
+	<complexType name="Option">
+		<attribute name="name" type="string" use="optional" />
+		<attribute name="value" type="string" use="optional" />
+		<attribute name="type" type="des:OptionType" default="POSIX" />
+	</complexType>
+	
+	<complexType name="Options">
+		<sequence>
+			<element name="option" type="des:Option" maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="Process">
+		<sequence minOccurs="0">
+			<element name="path" type="string" minOccurs="1" maxOccurs="1" />
+			<element name="options" type="des:Options" />
+		</sequence>
+		<attribute name="id" use="optional" type="ID" />
+		<attribute name="pid" use="optional" type="IDREFS" />
+	</complexType>
+	
+	<complexType name="Group">
+		<choice>
+			<element name="process" type="des:Process" minOccurs="1" maxOccurs="unbounded" />
+			<element name="input" type="des:Source" minOccurs="1" maxOccurs="unbounded" />
+		</choice>
+		<attribute name="id" type="ID" />
+		<attribute name="pid" type="IDREFS" use="optional" />
+	</complexType>
+	
+	<complexType name="Message">
+		<sequence>
+			<element name="fileSet" type="des:Group" minOccurs="0" maxOccurs="unbounded" />
+		</sequence>
+		<attribute name="id" type="ID" />
+	</complexType>
+
+	<element name="dmes" type="des:Message" >
+		<annotation>
+			<documentation>The root node of every message.</documentation>
+		</annotation>
+	</element>
+
+</schema>
